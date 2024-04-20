@@ -1,0 +1,20 @@
+{% extends 'medical_services/index.html' %}
+{% block content %}
+
+<form method="post" action="" class="row" enctype="multipart/form-data">
+    <div class="col-3">
+        <div class="bd-placeholder-img card shadow-sm" style="width: 18rem;">
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-outline-success">
+                Отправить
+            </button>
+        </div>
+    </div>
+
+</form>
+
+
+{% endblock %}

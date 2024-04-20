@@ -1,0 +1,16 @@
+{% extends 'medical_services/index.html' %}
+{% block content %}
+
+<div class="col-3">
+    <div class="bd-placeholder-img card shadow-sm" style="width: 18rem;">
+        <div class="card-body">
+            <p>Мы свяжемся с Вами в течении 15 минут!</p>
+        </div>
+        <div>
+            <a href="{% url 'medical_services:home' %}" class="btn text-white">На главную страницу</a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

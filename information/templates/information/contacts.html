@@ -1,0 +1,35 @@
+{% extends 'medical_services/index.html' %}
+{% block content %}
+
+<div class="col-lg-12 col-md-9 col-sm-12">
+    <div class="card mb-4 box-shadow">
+        <div class="card-body text-start">
+            <table class="table table-striped">
+                {% for el in contact %}
+                <tr>
+                    <td class="w-25">Наименование</td>
+                    <td>{{ el.title }}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Часы работы</td>
+                    <td>{{ el.opening_hours }}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Адрес</td>
+                    <td>{{ el.address }}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Телефон</td>
+                    <td>{{ el.phone }}</td>
+                </tr>
+                <tr>
+                    <td class="w-25">Диагностика</td>
+                    <td>{{ el.description }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

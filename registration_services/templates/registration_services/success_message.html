@@ -1,0 +1,22 @@
+{% extends 'medical_services/index.html' %}
+{% block content %}
+
+<div class="col-3">
+    <div class="bd-placeholder-img card shadow-sm" style="width: 18rem;">
+        <div class="card-body">
+            {% if user.is_authenticated %}
+            <p>Вы записаны на прием!</p>
+            {% else %}
+            <p>Мы свяжемся с Вами в течении 15 минут!</p>
+            {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'registration_services:appointments' %}" class="btn text-white">К записям</a>
+        <a href="{% url 'medical_services:home' %}" class="btn text-white">На главную страницу</a>
+        {% else %}
+        <a href="{% url 'medical_services:home' %}" class="btn text-white">На главную страницу</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
