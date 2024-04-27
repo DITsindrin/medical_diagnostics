@@ -35,6 +35,15 @@ class MakeAppointmentCreateView(CreateView):
     success_url = reverse_lazy('registration_services:success_message')
     form_class = MakeAppointmentForm
 
+    def get_form_kwargs(self):
+        url = self.request.path
+        id_pk = re.findall(r'\b\d+\b', url)
+        doctor = MedicalStaff.objects.get(pk=id_pk[0])
+        medical_categories_id = doctor.medical_category.id
+        kwargs = super().get_form_kwargs()
+        kwargs['extra_param'] = medical_categories_id  # Добавляем ваш параметр
+        return kwargs
+
     def get_form_class(self):
         if not self.request.user.is_authenticated:
             form_class = AnonymousMakeAppointmentForm
@@ -46,10 +55,9 @@ class MakeAppointmentCreateView(CreateView):
     def form_valid(self, form):
         url = self.request.path
         id_pk = re.findall(r'\b\d+\b', url)
-        print(MedicalStaff.objects.get(pk=id_pk[0]))
-
+        doctor = MedicalStaff.objects.get(pk=id_pk[0])
         form.instance.patient = self.request.user
-        form.instance.doctor = MedicalStaff.objects.get(pk=id_pk[0])
+        form.instance.doctor = doctor
 
         return super().form_valid(form)
 
